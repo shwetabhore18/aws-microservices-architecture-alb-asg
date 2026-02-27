@@ -32,6 +32,17 @@ Each microservice scales independently based on CPU utilization.
 
 ---
 
+## ⚙ Implementation Steps
+
+1. Created 3 Launch Templates (Home, Mobile, Laptop)
+2. Created 3 Target Groups
+3. Created 1 Application Load Balancer
+4. Created 3 Auto Scaling Groups
+5. Configured path-based routing rules
+6. Performed stress testing manually
+
+---
+
 ## 🛠 AWS Services Used
 
 ### Amazon EC2
@@ -44,33 +55,62 @@ Defines instance configuration including:
 - Security group
 - User data script
 
-### Auto Scaling Groups
-- Maintains desired capacity
-- Performs self-healing
-- Scales instances based on CPU utilization
+<p align="center">
+  <img src="Screenshots/templates.png" width="800">
+</p>
 
 ### Target Groups
-- Registers EC2 instances
 - Performs health checks
 - Routes traffic only to healthy instances
+<p align="center">
+  <img src="Screenshots/targetgroup.png" width="800">
+</p>
+
 
 ### Application Load Balancer
 - Operates at Layer 7 (HTTP/HTTPS)
 - Supports path-based routing
 - Distributes traffic across multiple AZs
 
----
+<p align="center">
+  <img src="Screenshots/loadbalancer.png" width="800">
+</p>
 
-## ⚙ Implementation Steps
+### Auto Scaling Groups
+- Maintains desired, min & max capacity
+- Performs self-healing
+- Scales instances based on CPU utilization after 30% as we set in target tracking policy
 
-1. Created 3 Launch Templates (Home, Mobile, Laptop)
-2. Created 3 Target Groups
-3. Created 1 Application Load Balancer
-4. Configured path-based routing rules
-5. Created 3 Auto Scaling Groups
-6. Configured CPU-based target tracking scaling policy
-7. Performed stress testing
-8. Validated self-healing mechanism
+<p align="center">
+  <img src="Screenshots/autoscaling_grps" width="800">
+</p>
+
+### 🔀 Path-Based Routing Configuration
+
+- The Application Load Balancer receives all incoming traffic on **Port 80 (HTTP)**.
+- Configured a listener on **Port 80** to handle incoming web traffic.
+- Each microservice is mapped to its own Target Group.
+- Defined path-based routing rules in the ALB listener:
+- steps
+
+#### Listener Rules Screenshot
+
+<p align="center">
+  <img src="Screenshots/image1.png" width="800">
+</p>
+
+<p align="center">
+  <img src="Screenshots/image2.png" width="800">
+</p>
+
+<p align="center">
+  <img src="Screenshots/image3.png" width="800">
+</p>
+
+<p align="center">
+  <img src="Screenshots/image.png" width="800">
+</p>
+
 
 ---
 
@@ -113,13 +153,6 @@ Scaling is based on average CPU utilization across the Auto Scaling Group.
 
 ---
 
-## 📷 Screenshots
-
-(Add screenshots here)
-- Load Balancer Listener Rules
-- Auto Scaling Activity
-- Target Group Health Status
-- Scaling Event Logs
 
 ---
 
