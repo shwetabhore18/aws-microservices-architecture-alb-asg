@@ -26,7 +26,9 @@ Routing Logic:
 
 Each microservice scales independently based on CPU utilization.
 
-<img src="architecture-diagram.png" alt="Description" width="600">
+<p align="center">
+  <img src="Screenshots/architecture-diagram.png" width="800">
+</p>
 
 ---
 
