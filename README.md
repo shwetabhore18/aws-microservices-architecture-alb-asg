@@ -26,6 +26,8 @@ Routing Logic:
 
 Each microservice scales independently based on CPU utilization.
 
+<img src="architecture-diagram.png" alt="Description" width="600">
+
 ---
 
 ## 🛠 AWS Services Used
