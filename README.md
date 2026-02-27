@@ -160,6 +160,25 @@ stress --cpu 2 --timeout 300
 
 ---
 
+## 🔥 Output Testing
+
+- copy the **DNS-name url** from load balancer and paste in browser 
+- refresh continously it goes to different microservice every time
+
+<p align="center">
+  <img src="Screenshots/output.png" width="800">
+</p>
+
+<p align="center">
+  <img src="Screenshots/output2.png" width="800">
+</p>
+
+<p align="center">
+  <img src="Screenshots/output3.png" width="800">
+</p>
+
+---
+
 ## ♻ Self-Healing Validation
 
 - Stopped Apache service on one instance
