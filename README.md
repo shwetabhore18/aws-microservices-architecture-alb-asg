@@ -10,7 +10,7 @@ The architecture consists of three independent microservices:
 - Mobile Service
 - Laptop Service
 
-Each service is deployed using Launch Templates and managed by independent Auto Scaling Groups. Traffic is routed through a single Application Load Balancer using path-based routing.
+Each service is deployed using Launch Templates and managed by independent Auto Scaling Groups. Traffic is routed through a single Application Load Balancer using **path-based routing.**
 
 ---
 
@@ -24,7 +24,7 @@ Routing Logic:
 - /mobile → Mobile Service
 - /laptop → Laptop Service
 
-Each microservice scales independently based on CPU utilization.
+Each microservice **scales independently** based on **CPU utilization.**
 
 <p align="center">
   <img src="Screenshots/architecture-diagram.png" width="800">
@@ -48,6 +48,8 @@ Each microservice scales independently based on CPU utilization.
 ### Amazon EC2
 Used to run web servers (Apache installed via user data script).
 
+---
+
 ### Launch Templates
 Defines instance configuration including:
 - AMI
@@ -59,6 +61,8 @@ Defines instance configuration including:
   <img src="Screenshots/templates.png" width="800">
 </p>
 
+---
+
 ### Target Groups
 - Performs health checks
 - Routes traffic only to healthy instances
@@ -66,6 +70,7 @@ Defines instance configuration including:
   <img src="Screenshots/targetgroup.png" width="800">
 </p>
 
+---
 
 ### Application Load Balancer
 - Operates at Layer 7 (HTTP/HTTPS)
@@ -76,6 +81,8 @@ Defines instance configuration including:
   <img src="Screenshots/loadbalancer.png" width="800">
 </p>
 
+---
+
 ### Auto Scaling Groups
 - Maintains desired, min & max capacity
 - Performs self-healing
@@ -85,6 +92,8 @@ Defines instance configuration including:
   <img src="Screenshots/autoscaling_grps" width="800">
 </p>
 
+---
+
 ### 🔀 Path-Based Routing Configuration
 
 - The Application Load Balancer receives all incoming traffic on **Port 80 (HTTP)**.
@@ -92,6 +101,8 @@ Defines instance configuration including:
 - Each microservice is mapped to its own Target Group.
 - Defined path-based routing rules in the ALB listener:
  **Steps**
+
+---
 
 #### Listener Rules Screenshot
 
@@ -110,7 +121,6 @@ Defines instance configuration including:
 <p align="center">
   <img src="Screenshots/image4.png" width="800">
 </p>
-
 
 ---
 
@@ -145,8 +155,8 @@ stress --cpu 2 --timeout 300
   <img src="Screenshots/autoscaled-home2.png" width="800">
 </p>
 
-- here successfully our instance is scaledup of home service
-- as we only increse the stress manually on home webservice
+- here successfully our instance is scaled up of **home service**
+- as we only increase the stress manually on home webservice
 
 ---
 
