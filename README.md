@@ -91,7 +91,7 @@ Defines instance configuration including:
 - Configured a listener on **Port 80** to handle incoming web traffic.
 - Each microservice is mapped to its own Target Group.
 - Defined path-based routing rules in the ALB listener:
-- steps
+ **Steps**
 
 #### Listener Rules Screenshot
 
@@ -108,20 +108,45 @@ Defines instance configuration including:
 </p>
 
 <p align="center">
-  <img src="Screenshots/image.png" width="800">
+  <img src="Screenshots/image4.png" width="800">
 </p>
 
 
 ---
 
-## 🔥 Auto Scaling Validation
+## 🔥 Auto Scaling Testing
 
+- Connect any one of the service bec now we are testing for only one service
 - Installed stress tool on EC2
 - Generated high CPU load
 - Observed scaling activity in Auto Scaling Group
 - Verified new instance launch
 
 Scaling is based on average CPU utilization across the Auto Scaling Group.
+
+```
+sudo yum install stress -y
+stress --cpu 2 --timeout 300
+```
+
+<p align="center">
+  <img src="Screenshots/connectt.png" width="800">
+</p>
+
+<p align="center">
+  <img src="Screenshots/connect.png" width="800">
+</p>
+
+<p align="center">
+  <img src="Screenshots/imagee.png" width="800">
+</p>
+
+<p align="center">
+  <img src="Screenshots/autoscaled-home2.png" width="800">
+</p>
+
+- here successfully our instance is scaledup of home service
+- as we only increse the stress manually on home webservice
 
 ---
 
@@ -143,16 +168,24 @@ Scaling is based on average CPU utilization across the Auto Scaling Group.
 
 ---
 
-## 🚀 Production Features Implemented
+## 🗺 Resource Map Overview
 
-- High Availability (Multi-AZ)
-- Load Balancing
-- Independent Horizontal Scaling
-- Health Monitoring
-- Fault Tolerance
+The Resource Map provides a visual representation of how traffic flows through the Application Load Balancer to the backend microservices.
 
----
+### 🔹 Architecture Flow
 
+User → Application Load Balancer (HTTP:80) → Listener Rules → Target Groups → EC2 Instances
+
+- All targets are configured to receive traffic on **Port 80**.
+- Health checks ensure only healthy instances receive traffic.
+
+### 📸 Resource Map Screenshot
+
+<p align="center">
+  <img src="Screenshots/resource_map.png" width="900">
+</p>
+
+This setup ensures high availability, fault tolerance, and independent scaling of each microservice.
 
 ---
 
